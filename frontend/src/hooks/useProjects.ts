@@ -3,7 +3,6 @@ import { API_URL } from "../config/urls";
 import { Project } from "../components/Types";
 import { projectSchema } from "../validering/validering"; 
 
-
 interface ApiProject {
   id?: string;
   Id?: string;
@@ -12,6 +11,7 @@ interface ApiProject {
   Title?: string;
   description?: string;
   Description?: string;
+  publics?: boolean; 
 }
 
 interface UseProjectsResult {
@@ -29,7 +29,6 @@ export function useProjects(): UseProjectsResult {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
- 
   const fetchProjects = async () => {
     setLoading(true);
     setError(null);
@@ -42,12 +41,12 @@ export function useProjects(): UseProjectsResult {
         throw new Error("Data is not an array.");
       }
 
-   
       const validProjects: Project[] = data
         .map((project) => ({
-          id: project.id || project['Id'] || project['_id'] || Math.floor(Math.random() * 1000000).toString(),
+          id: project.id || project.Id || project._id || Math.floor(Math.random() * 1000000).toString(),
           title: project.title || project.Title || "Untitled Project",
           description: project.description || project.Description || "No description",
+          publics: project.publics ?? true, 
         }))
         .filter((project) => {
           const result = projectSchema.safeParse(project);
@@ -62,9 +61,7 @@ export function useProjects(): UseProjectsResult {
     }
   };
 
-
   const createProject = async (project: Omit<Project, 'id'>) => {
-
     const validation = projectSchema.safeParse(project);
     console.log("Validation result for create:", validation);
     if (!validation.success) {
@@ -86,7 +83,6 @@ export function useProjects(): UseProjectsResult {
     }
   };
 
-  
   const deleteProject = async (projectId: string) => {
     try {
       const response = await fetch(API_URL.deleteProject(projectId), {
@@ -101,14 +97,12 @@ export function useProjects(): UseProjectsResult {
     }
   };
 
-
   const updateProject = async (updatedProject: Project) => {
     if (!updatedProject.id) {
       setError("Project ID is required for update.");
       return;
     }
 
-  
     const validation = projectSchema.safeParse(updatedProject);
     console.log("Validation result for update:", validation); 
     if (!validation.success) {

@@ -63,6 +63,8 @@ const ProjectList: React.FC<ProjectListProps> = ({ projects, onUpdate, onDelete 
                 <article>
                   <h3>{project.title}</h3>
                   <p>{project.description}</p>
+                  {}
+                  <p>Status: {project.publics ? 'Public' : 'Private'}</p>
                   <button onClick={() => startEditing(project)}>Edit</button>
                   <button onClick={() => project.id && onDelete(project.id)}>Delete</button>
                 </article>

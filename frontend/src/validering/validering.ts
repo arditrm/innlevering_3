@@ -6,6 +6,7 @@ export const projectSchema = z.object({
     .string()
     .min(1, "Description is required")
     .max(500, "Description is too long"),
+    publics: z.boolean()
 });
 
 

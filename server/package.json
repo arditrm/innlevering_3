@@ -1,15 +1,15 @@
 {
   "scripts": {
-  "dev:server": "tsx --watch ./server.ts",
-  "setup:db": "tsx ./db/tabel.ts && tsx ./db/seeder.ts",
-  "start": "node ./dist/server.js"
-},
-
+    "dev:server": "tsx --watch ./server.ts",
+    "setup:db": "tsx ./db/tabel.ts && tsx ./db/seeder.ts",
+    "start": "node ./dist/server.js"
+  },
   "dependencies": {
     "@hono/node-server": "^1.13.4",
     "better-sqlite3": "^11.5.0",
     "hono": "^4.6.8",
-    "uuid": "^11.0.2"
+    "uuid": "^11.0.2",
+     "zod": "^3.0.0"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.11",

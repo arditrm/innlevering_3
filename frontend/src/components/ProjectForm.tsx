@@ -9,14 +9,17 @@ type ProjectFormProps = {
 const ProjectForm: React.FC<ProjectFormProps> = ({ onSubmit, initialProject }) => {
   const [projectName, setProjectName] = useState<string>(initialProject?.title || '');
   const [projectDescription, setProjectDescription] = useState<string>(initialProject?.description || '');
+  const [isPublic, setIsPublic] = useState<boolean>(initialProject?.publics || false);
 
   useEffect(() => {
     if (initialProject) {
       setProjectName(initialProject.title);
       setProjectDescription(initialProject.description);
+      setIsPublic(initialProject.publics);
     } else {
       setProjectName('');
       setProjectDescription('');
+      setIsPublic(false);
     }
   }, [initialProject]);
 
@@ -33,10 +36,12 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ onSubmit, initialProject }) =
           id: initialProject.id,
           title: projectName,
           description: projectDescription,
+          publics: isPublic
         }
       : {
           title: projectName,
           description: projectDescription,
+          publics: isPublic,
         };
 
     onSubmit(newProject);
@@ -44,6 +49,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ onSubmit, initialProject }) =
     if (!initialProject) {
       setProjectName('');
       setProjectDescription('');
+      setIsPublic(false);
     }
   };
 
@@ -68,6 +74,15 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ onSubmit, initialProject }) =
           onChange={(e) => setProjectDescription(e.target.value)}
           required
         ></textarea><br />
+
+        <label>
+          Public Project:
+          <input
+            type="checkbox"
+            checked={isPublic}
+            onChange={(e) => setIsPublic(e.target.checked)}
+          />
+        </label><br />
 
         <input type="submit" value={initialProject ? "Save Changes" : "Create Project"} /><br />
       </form>
