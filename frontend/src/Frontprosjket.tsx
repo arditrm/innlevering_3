@@ -1,9 +1,7 @@
-
-
 import React from 'react';
 import ProjectForm from './components/ProjectForm';
 import ProjectList from './components/ProjectList';
-import { useProjects } from './hooks /useProjects';
+import { useProjects } from './hooks/useProjects';
 import { Project } from './components/Types';
 
 const Frontprosjket: React.FC = () => {

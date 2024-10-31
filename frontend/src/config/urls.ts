@@ -1,10 +1,10 @@
 
 
 export const API_URL = {
-    getProjects: 'http://localhost:1234/json',
-    createProject: 'http://localhost:1234/json',
-    updateProject: (id: string) => `http://localhost:1234/json/${id}`,
-    deleteProject: (id: string) => `http://localhost:1234/json/${id}`,
+    getProjects: 'http://localhost:2121/json',
+    createProject: 'http://localhost:2121/json',
+    updateProject: (id: string) => `http://localhost:2121/json/${id}`,
+    deleteProject: (id: string) => `http://localhost:2121/json/${id}`,
   };
   
 

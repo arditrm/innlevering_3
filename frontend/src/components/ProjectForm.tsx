@@ -1,5 +1,3 @@
-// src/components/ProjectForm.tsx
-
 import React, { useState, useEffect } from 'react';
 import { Project } from './Types';
 
