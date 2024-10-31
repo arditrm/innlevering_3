@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "better-sqlite3": "^11.5.0",
+    "hono": "^4.6.8",
+    "uuid": "^11.0.2"
+  }
+}
